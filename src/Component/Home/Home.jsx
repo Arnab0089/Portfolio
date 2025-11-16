@@ -7,6 +7,7 @@ export default function Home() {
     <div className='min-h-screen bg-background1 text-foreground overflow-x-hidden'>
         <ThemeToggle/>
         <StarBackground/>
+        
       
     </div>
   )

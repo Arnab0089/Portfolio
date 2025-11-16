@@ -80,6 +80,7 @@
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
+    --stars-z: -10;
   }
 
   .dark {
@@ -93,6 +94,7 @@
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
+    --stars-z: -5;
   }
 
   * {
@@ -155,6 +157,8 @@
 @utility star {
   @apply absolute rounded-full bg-white;
   box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+  z-index: var(--stars-z) !important;
+  
 }
 @utility animate-twinkle {
   animation: var(--animate-twinkle);
@@ -162,7 +166,7 @@
 
 @utility meteor {
   @apply absolute rounded-full;
-  
+  z-index: var(--stars-z) !important;
   background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0));
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
   transform: rotate(-45deg);

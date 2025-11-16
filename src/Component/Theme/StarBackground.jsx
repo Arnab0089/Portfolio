@@ -41,11 +41,12 @@ export default function StarBackground() {
     }
 
   return (
-    <div className='fixed inset-0 overflow-hidden pointer-events-none z-0'>
+    <div className=''>
+    <div className='fixed inset-0 overflow-hidden pointer-events-none z-0  '>
       {stars && stars.map(star => (
         <div
           key={star.id}
-          className='star animate-pulse-subtle'
+          className='star animate-pulse-subtle twinkle'
           style={{
             width: `${star.size}px`,
             height: `${star.size}px`,
@@ -71,7 +72,7 @@ export default function StarBackground() {
           }}
         />
       ))}
-
+</div>
     </div>
   )
 }

@@ -66,12 +66,13 @@
       opacity: 0;
     }
   }
+  
 }
 
 @layer base {
   :root {
     --background: 210 40% 98%;
-    --background1:white;
+    --background1:#4E56C0;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -81,6 +82,7 @@
 
     --border: 214 32% 91%;
     --stars-z: -10;
+    --clouds-z: 0;
   }
 
   .dark {
@@ -95,6 +97,7 @@
 
     --border: 217 33% 20%;
     --stars-z: -5;
+    --clouds-z: 5;
   }
 
   * {
@@ -109,7 +112,46 @@
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  .cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  filter: blur(4px);               /* Subtle blur only */
+  animation: cloud-move var(--cloud-speed) linear infinite;
+  transform: translateY(var(--cloud-offset));
 }
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 70%;
+  height: 70%;
+  top: -40%;
+  left: 10%;
+}
+
+.cloud::after {
+  width: 80%;
+  height: 80%;
+  top: -50%;
+  right: 5%;
+}
+  @keyframes cloud-move {
+    0% {
+      margin-left: -30px;
+    }
+    100% {
+      margin-left: 110vw;
+    }
+  }
+}
+
 
 @utility container {
   margin-inline: auto;

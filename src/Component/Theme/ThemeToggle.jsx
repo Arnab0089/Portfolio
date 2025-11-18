@@ -36,7 +36,7 @@ export default function ThemeToggle() {
         >
             {isDarkMode 
                 ? <MdSunny className='h-6 w-6 text-yellow-300 hover:text-amber-500'/> 
-                : <FaMoon className='h-6 w-6 text-blue-900 hover:text-amber-100'/>}
+                : <FaMoon className='h-6 w-6 text-amber-500 hover:text-amber-100'/>}
         </button>
     );
 }

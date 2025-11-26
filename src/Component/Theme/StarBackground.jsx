@@ -102,14 +102,18 @@ export default function StarBackground() {
     if (isDark) {
       generateStars();
       generateMeteors();
-      console
+      const handleresizer=()=>{
+        generateStars();
+      }
+      window.addEventListener("resize",handleresizer);
+      return ()=> window.removeEventListener("resize",handleresizer);
     } else {
       generateClouds();
     }
   }, [isDark]);
 
  const generateClouds = () => {
-  const count = 6;
+  const count = 10;
   const newClouds = [];
 
   for (let i = 0; i < count; i++) {

@@ -1,11 +1,15 @@
 @import "tailwindcss";
-
+@plugin 'lightswind/plugin';
+@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 @theme {
   --color-border: hsl(var(--border));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-
+  --font-primary-1: "Merriweather", serif;
+  --font-primary-2: "Coming Soon", cursive;
   --color-primary: hsl(var(--primary));
+  --color-primary-1: #ffbc4c;
+  --color-primary-2: var(--primary-1);
   --color-primary-foreground: hsl(var(--primary-foreground));
 
   --color-card: hsl(var(--card));
@@ -19,10 +23,29 @@
   --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
   --animate-meteor: meteor 5s linear infinite;
   --animate-twinkle: twinkle 0.5s ease-in-out infinite;
+  --animate-profile-image: profile_animate 8s ease-in-out infinite 1s;
+
+  @keyframes profile_animate {
+    0% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+  }
 
   @keyframes twinkle {
-  0%   { opacity: 0.3; transform: scale(1); }
-  100% { opacity: 1;   transform: scale(1.4); }
+    0% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.4);
+    }
   }
 
   @keyframes float {
@@ -66,20 +89,23 @@
       opacity: 0;
     }
   }
-  
 }
 
 @layer base {
   :root {
     --background: 210 40% 98%;
-    --background1:#4E56C0;
+    --background1: #799eff;
     --foreground: 222 47% 11%;
-
+    --navlink-color: #3c467b;
+    --navlink-border-color: #ffbc4c;
+    --navlink-hover-color: #ffbc4c;
+    --primary-1: #2d336b;
+    --primary-2: #2d336b;
     --card: 0 0% 100%;
 
     --primary: 250 47% 60%;
     --primary-foreground: 210 40% 98%;
-
+    --border-toggle: orange;
     --border: 214 32% 91%;
     --stars-z: -10;
     --clouds-z: 0;
@@ -87,17 +113,26 @@
 
   .dark {
     --background: 222 47% 4%;
-    --background1: linear-gradient( to bottom right,  rgba(107, 33, 168, 0.20), rgba(49, 46, 129, 0.30),rgb(0, 0, 0));
+    --background1: linear-gradient(
+      to bottom right,
+      rgba(107, 33, 168, 0.2),
+      rgba(49, 46, 129, 0.3),
+      rgb(0, 0, 0)
+    );
     --foreground: 213 31% 91%;
 
     --card: 222 47% 8%;
-
+    --border-toggle: white;
     --primary: 250 65% 65%;
     --primary-foreground: 213 31% 91%;
-
+    --navlink-color: #ffbc4c;
+    --navlink-border-color: white;
+    --navlink-hover-color: white;
     --border: 217 33% 20%;
     --stars-z: -5;
-    --clouds-z: 5;
+    --clouds-z: -5;
+    --primary-1: white;
+    --primary-2: white;
   }
 
   * {
@@ -113,35 +148,38 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   .cloud {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 50%;
-  filter: blur(4px);               /* Subtle blur only */
-  animation: cloud-move var(--cloud-speed) linear infinite;
-  transform: translateY(var(--cloud-offset));
-}
+    position: absolute;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    filter: blur(4px); /* Subtle blur only */
+    animation: cloud-move var(--cloud-speed) linear infinite;
+    transform: translateY(var(--cloud-offset));
+  }
 
-.cloud::before,
-.cloud::after {
-  content: "";
-  position: absolute;
-  background: inherit;
-  border-radius: 50%;
-}
+  .cloud::before,
+  .cloud::after {
+    content: "";
+    position: absolute;
+    background: inherit;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
 
-.cloud::before {
-  width: 70%;
-  height: 70%;
-  top: -40%;
-  left: 10%;
-}
+  .cloud::before {
+    width: 70%;
+    height: 70%;
+    top: -40%;
+    left: 10%;
+  }
 
-.cloud::after {
-  width: 80%;
-  height: 80%;
-  top: -50%;
-  right: 5%;
-}
+  .cloud::after {
+    width: 80%;
+    height: 80%;
+    top: -50%;
+    right: 5%;
+  }
   @keyframes cloud-move {
     0% {
       margin-left: -30px;
@@ -152,6 +190,24 @@
   }
 }
 
+@utility rainbow-text {
+  color: white;
+  text-shadow: 0 0 5px red, 0 0 10px orange, 0 0 15px yellow, 0 0 20px green,
+    0 0 25px blue, 0 0 30px indigo, 0 0 35px violet;
+}
+
+@utility navlink-color {
+  color: var(--navlink-color);
+}
+
+@utility navlink-hover-color {
+  &:hover {
+    color: var(--navlink-hover-color);
+  }
+}
+@utility navlink-border-color {
+  border-color: var(--navlink-border-color);
+}
 
 @utility container {
   margin-inline: auto;
@@ -179,6 +235,10 @@
   text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
 }
 
+@utility border-toggle {
+  border: 1px solid var(--border-toggle);
+}
+
 @utility card-hover {
   @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
 }
@@ -191,7 +251,7 @@
 }
 
 @utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
+  @apply px-6 py-2 rounded-full bg-[#ffbc4c] text-primary-foreground font-medium 
          transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
          hover:scale-105 active:scale-95;
 }
@@ -200,7 +260,6 @@
   @apply absolute rounded-full bg-white;
   box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
   z-index: var(--stars-z) !important;
-  
 }
 @utility animate-twinkle {
   animation: var(--animate-twinkle);
@@ -209,8 +268,12 @@
 @utility meteor {
   @apply absolute rounded-full;
   z-index: var(--stars-z) !important;
-  background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0));
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0)
+  );
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
   transform: rotate(-45deg);
   opacity: 0;
   animation: var(--animate-meteor-fall);
@@ -225,4 +288,27 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
+}
+
+@utility profile-image {
+  @apply rounded-full;
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  animation: var(--animate-profile-image);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.45),
+    0 0 50px rgba(167, 139, 250, 0.35), 0 0 90px rgba(139, 92, 246, 0.25);
+}
+@media (max-width: 1024px) {
+  .profile-image {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-image {
+    width: 300px;
+    height: 300px;
+  }
 }

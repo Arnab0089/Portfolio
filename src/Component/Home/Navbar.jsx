@@ -41,19 +41,19 @@ export default function Navbar() {
   return (
     <div
       className={`fixed  w-full z-40 transition-all duration-300  ${
-        isScrolled ? "py-3 bg-[#799eff]" : "py-5 "
+        isScrolled ? "py-3 bg-navbar shadow-lg" : "py-5 "
       }`}
     >
       <nav className="container flex items-center justify-between">
         <a
           href="#hero"
-          className="text-xl font-bold font-primary-2 text-primary-1 flex items-center "
+          className="text-xl font-bold font-primary-2  flex items-center "
         >
           <span className="relative z-10 ">
-            <span className="text-glow text-foreground text-2xl px-2 ">
+            <span className="text-glow text-foreground text-2xl px-1 ">
               Arnab
             </span>
-            Portfolio
+            <span className="rainbow-text text-2xl px-2 ">Portfolio</span>
           </span>
         </a>
 
@@ -87,7 +87,7 @@ export default function Navbar() {
               <a
                 key={key}
                 href={item.href}
-                className="mx-4 text-lg font-medium text-[#3C467B] dark:text-primary-1  hover:border-b-2 hover:border-[#3C467B] dark:hover:border-primary-foreground
+                className="mx-4 text-lg font-medium text-[#3C467B] dark:text-primary-1  hover:border-b-2 hover:border-[#3C467B] dark:hover:border-white
               border-b-transparent border-b-2  hover:text-glow hover:text-foreground transition-colors duration-300"
               >
                 {item.name}

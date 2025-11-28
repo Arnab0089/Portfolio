@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin 'lightswind/plugin';
-@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Exo:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 @theme {
   --color-border: hsl(var(--border));
   --color-background: hsl(var(--background));
@@ -11,6 +12,7 @@
   --color-primary-1: #ffbc4c;
   --color-primary-2: var(--primary-1);
   --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-navbar-bgg: var(--navbar-background);
 
   --color-card: hsl(var(--card));
 
@@ -99,8 +101,8 @@
     --navlink-color: #3c467b;
     --navlink-border-color: #ffbc4c;
     --navlink-hover-color: #ffbc4c;
-    --primary-1: #2d336b;
-    --primary-2: #2d336b;
+    --primary-1: black;
+    --primary-2: #fcf6d9;
     --card: 0 0% 100%;
 
     --primary: 250 47% 60%;
@@ -108,6 +110,14 @@
     --border-toggle: orange;
     --border: 214 32% 91%;
     --stars-z: -10;
+    --navbar-background: linear-gradient(
+      135deg,
+      #b4c4ce 0%,
+      #8fb0c0 30%,
+      #046a90 60%,
+      #145070 80%,
+      #0c3850 100%
+    );
     --clouds-z: 0;
   }
 
@@ -120,7 +130,12 @@
       rgb(0, 0, 0)
     );
     --foreground: 213 31% 91%;
-
+    --navbar-background: linear-gradient(
+      135deg,
+      rgb(107, 33, 168),
+      rgba(49, 46, 129),
+      rgb(0, 0, 0)
+    );
     --card: 222 47% 8%;
     --border-toggle: white;
     --primary: 250 65% 65%;
@@ -147,11 +162,11 @@
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  .cloud {
+  /* .cloud {
     position: absolute;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 50%;
-    filter: blur(4px); /* Subtle blur only */
+    filter: blur(4px); 
     animation: cloud-move var(--cloud-speed) linear infinite;
     transform: translateY(var(--cloud-offset));
   }
@@ -182,12 +197,179 @@
   }
   @keyframes cloud-move {
     0% {
-      margin-left: -30px;
+      transform: translateX(0) translateY(var(--cloud-offset));
     }
     100% {
-      margin-left: 110vw;
+      transform: translateX(140vw) translateY(var(--cloud-offset));
+    }
+  } */
+  /* 
+  .cloud {
+    position: absolute;
+    background: radial-gradient(
+      circle at 50% 60%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(245, 245, 245, 0.85) 45%,
+      rgba(225, 225, 225, 0.65) 70%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 50%;
+    filter: blur(6px); 
+    animation: cloud-move var(--cloud-speed) linear infinite;
+    transform: translateY(var(--cloud-offset));
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15),
+      0px -5px 15px rgba(255, 255, 255, 0.3); 
+  }
+
+  .cloud::before,
+  .cloud::after {
+    content: "";
+    position: absolute;
+    background: radial-gradient(
+      circle at 50% 60%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(240, 240, 240, 0.85) 45%,
+      rgba(220, 220, 220, 0.6) 70%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 50%;
+  }
+
+  .cloud::before {
+    width: 70%;
+    height: 70%;
+    top: -40%;
+    left: 10%;
+  }
+
+  .cloud::after {
+    width: 80%;
+    height: 80%;
+    top: -50%;
+    right: 5%;
+  }
+
+  @keyframes cloud-move {
+    0% {
+      transform: translateX(0) translateY(var(--cloud-offset));
+    }
+    100% {
+      transform: translateX(140vw) translateY(var(--cloud-offset));
+    }
+  } */
+
+  .cloud {
+    position: absolute;
+    width: var(--cloud-width, 260px);
+    height: var(--cloud-height, 90px);
+
+    /* Soft fog look */
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.25) 40%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    filter: blur(12px);
+    border-radius: 50px;
+    animation: cloud-move var(--cloud-speed) linear infinite;
+    transform: translateY(var(--cloud-offset));
+  }
+
+  /* Extra fuzzy layers */
+  .cloud::before,
+  .cloud::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background: inherit;
+    filter: blur(22px);
+  }
+
+  .cloud::before {
+    opacity: 0.6;
+    transform: scale(1.25) translateY(-10px);
+  }
+
+  .cloud::after {
+    opacity: 0.4;
+    transform: scale(0.9) translateY(12px);
+  }
+
+  /* Movement stays same */
+  @keyframes cloud-move {
+    0% {
+      transform: translateX(-30vw) translateY(var(--cloud-offset));
+    }
+    100% {
+      transform: translateX(140vw) translateY(var(--cloud-offset));
     }
   }
+
+  .snowflake {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 95 !important;
+
+    animation: snow-fall var(--fall-duration) linear var(--delay) infinite,
+      snow-drift var(--drift-duration) ease-in-out var(--delay) infinite
+        alternate;
+  }
+
+  @keyframes snow-fall {
+    0% {
+      transform: translateY(-10vh) translateX(var(--drift-value, 0px));
+    }
+    100% {
+      transform: translateY(110vh) translateX(var(--drift-value, 0px));
+    }
+  }
+
+  @keyframes snow-drift {
+    0% {
+      --drift-value: 0px;
+    }
+    100% {
+      --drift-value: 25px;
+    }
+  }
+
+  /* Left-right drifting */
+  @keyframes drift {
+    0% {
+      transform: translateX(0px);
+    }
+    100% {
+      transform: translateX(25px);
+    }
+  }
+  .floating-icon {
+    @apply absolute w-12 h-12 rounded-full flex justify-center items-center text-white text-lg shadow-xl;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Floating Animation */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+}
+
+@utility bg-navbar {
+  background: var(--navbar-background);
 }
 
 @utility rainbow-text {
@@ -295,7 +477,7 @@
   width: 450px;
   height: 450px;
   object-fit: cover;
-  animation: var(--animate-profile-image);
+
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.45),
     0 0 50px rgba(167, 139, 250, 0.35), 0 0 90px rgba(139, 92, 246, 0.25);
 }

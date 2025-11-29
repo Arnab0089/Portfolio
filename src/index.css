@@ -8,8 +8,11 @@
   --color-foreground: hsl(var(--foreground));
   --font-primary-1: "Merriweather", serif;
   --font-primary-2: "Coming Soon", cursive;
+  --font-primary-3: "Exo", sans-serif;
   --color-primary: hsl(var(--primary));
+  --color-primary-3: var(--primary-3);
   --color-primary-1: #ffbc4c;
+  --color-text-col: var(--text-col);
   --color-primary-2: var(--primary-1);
   --color-primary-foreground: hsl(var(--primary-foreground));
   --color-navbar-bgg: var(--navbar-background);
@@ -104,7 +107,7 @@
     --primary-1: black;
     --primary-2: #fcf6d9;
     --card: 0 0% 100%;
-
+    --primary-3: #393d7e;
     --primary: 250 47% 60%;
     --primary-foreground: 210 40% 98%;
     --border-toggle: orange;
@@ -119,6 +122,7 @@
       #0c3850 100%
     );
     --clouds-z: 0;
+    --text-col: white;
   }
 
   .dark {
@@ -139,6 +143,7 @@
     --card: 222 47% 8%;
     --border-toggle: white;
     --primary: 250 65% 65%;
+    --primary-3: white;
     --primary-foreground: 213 31% 91%;
     --navlink-color: #ffbc4c;
     --navlink-border-color: white;
@@ -148,6 +153,10 @@
     --clouds-z: -5;
     --primary-1: white;
     --primary-2: white;
+    --text-col: black;
+  }
+  .glow-image img {
+    filter: drop-shadow(0 0 10px #ff6b00) drop-shadow(0 0 20px #ff6b00);
   }
 
   * {
@@ -264,7 +273,6 @@
     --duration: 5s;
 
     display: inline-block;
-    padding: var(--pad);
     border-radius: var(--radius);
     background: #0b1020;
     color: white;
@@ -288,6 +296,35 @@
     }
     100% {
       box-shadow: 0 0 12px #ff4d4d, 0 0 28px #ff9a4d;
+    }
+  }
+  .rotate-infinite {
+    animation: rotateIcon 4s linear infinite;
+  }
+
+  @keyframes rotateIcon {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .neon-glow img {
+    filter: drop-shadow(0 0 12px #ff6600) drop-shadow(0 0 25px #ff4500);
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0% {
+      filter: drop-shadow(0 0 10px #ff6600);
+    }
+    50% {
+      filter: drop-shadow(0 0 25px #ff4500);
+    }
+    100% {
+      filter: drop-shadow(0 0 10px #ff6600);
     }
   }
 

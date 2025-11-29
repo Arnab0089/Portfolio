@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Hero from "../Hero Section/Hero";
 import CloudBackground from "../Theme/CloudBackground";
 import AboutMe from "../About/AboutMe";
+import Skill from "../Skill/Skill";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <main>
         <Hero />
         <AboutMe />
+        <Skill />
       </main>
     </div>
   );

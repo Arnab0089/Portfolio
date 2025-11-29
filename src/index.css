@@ -258,6 +258,39 @@
     }
   } */
 
+  .glow-fallback {
+    --radius: 14px;
+    --pad: 16px;
+    --duration: 5s;
+
+    display: inline-block;
+    padding: var(--pad);
+    border-radius: var(--radius);
+    background: #0b1020;
+    color: white;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 18px rgba(0, 0, 0, 0.3);
+    animation: glowColors var(--duration) linear infinite;
+  }
+
+  @keyframes glowColors {
+    0% {
+      box-shadow: 0 0 12px #ff4d4d, 0 0 28px #ff9a4d;
+    }
+    25% {
+      box-shadow: 0 0 12px #4dd2ff, 0 0 28px #7fff7f;
+    }
+    50% {
+      box-shadow: 0 0 12px #8a4dff, 0 0 28px #4dbdff;
+    }
+    75% {
+      box-shadow: 0 0 12px #ff4dbd, 0 0 28px #ffd54d;
+    }
+    100% {
+      box-shadow: 0 0 12px #ff4d4d, 0 0 28px #ff9a4d;
+    }
+  }
+
   .cloud {
     position: absolute;
     width: var(--cloud-width, 260px);

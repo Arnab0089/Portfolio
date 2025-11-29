@@ -31,7 +31,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed bottom-5 right-5 sm:top-5 sm:bottom-auto p-1 sm:p-2 rounded-full border-2 border-toggle hover:bg-gray-200 dark:hover:bg-gray-700  transition-colors duration-300 cursor-pointer z-60"
+      className="fixed bg-black bottom-5 right-5 sm:top-5 sm:bottom-auto p-1 sm:p-2 rounded-full border-2 border-toggle hover:bg-gray-200 dark:hover:bg-gray-700  transition-colors duration-300 cursor-pointer z-60"
     >
       {isDarkMode ? (
         <MdSunny className="h-6 w-6 text-yellow-300 hover:text-amber-500" />
